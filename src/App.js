@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from "firebase";
 
+import FileUpload from "./fileUpload";
 import './App.css';
 
 class App extends Component {
@@ -25,8 +26,8 @@ class App extends Component {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth().signInWithPopup(provider)
-      .then(result => console.log("${result.user.mail} ha iniciado sesion"))
-      .catch(error => console.log("Error ${error.code}: ${error.message}"));
+      .then(result => console.log(`${result.user.mail} ha iniciado sesion`))
+      .catch(error => console.log(`Error ${error.code}: ${error.message}`));
   }
 
   handleLogout() {
@@ -43,6 +44,7 @@ class App extends Component {
           <img width="100" src={this.state.user.photoURL} alt={this.state.user.displayName}/>
           <p>Hola {this.state.user.displayName}!</p>
           <button onClick={this.handleLogout}>Salir</button>
+          <FileUpload />
         </div>
       );
     }
